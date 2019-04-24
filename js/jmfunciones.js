@@ -282,7 +282,7 @@ function validarCorreo(etiquetaCorreo){
 }
 
 function validarPassw(abc){
-    var expresion = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+    var expresion = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/;
     if (expresion.test(abc.value)){
         abc.classList.remove('input_error');
         document.getElementById('div-error2').style.display = 'none';
