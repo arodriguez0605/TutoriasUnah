@@ -40,7 +40,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate="Ingrese un correo válido: ex@abc.xyz">
-						<input class="input100" type="text" name="email" id="txt-correo" placeholder="Correo">
+						<input class="input100" type="email" name="email" id="txt-correo" placeholder="Correo" onkeyup="validarCorreo(this)">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -54,7 +54,8 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-
+					<div id="div-error" class="mensaje-error">Correo o Contraseña invalido, pruebe de nuevo</div>
+					<div id="div-error2" class="mensaje-error">Error, ingrese datos para procesar</div>
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn" id="btn-iniciar-sesion-estudiante">
 							Ingresar

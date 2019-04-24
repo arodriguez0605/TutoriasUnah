@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
   <link rel="stylesheet" type="text/css" href="css/util.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -159,21 +160,21 @@
 
         <!--Formulario -->
         <div class="form-group row">
-          <label for="example-text-input" class="col-2 col-form-label">Primer Nombre</label>
+          <label for="example-text-input" class="col-2 col-form-label">Primer Nombre *</label>
           <div class="col-10">
-            <input class="form-control" type="text" id="txt-pnombre" value="" name="pnombre" example-text-input">
+            <input class="form-control" type="text" id="txt-pnombre" value="" name="pnombre" example-text-input" onkeyup="validarNombre1(this)">
           </div>
         </div>
 
         <div class="form-group row">
           <label for="example-text-input" class="col-2 col-form-label">Segundo Nombre</label>
           <div class="col-10">
-            <input class="form-control" type="text" value="" id="txt-snombre" name="snombre" example-text-input">
+            <input class="form-control" type="text" value="" id="txt-snombre" name="snombre" example-text-input" >
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="example-text-input" class="col-2 col-form-label">Primer Apellido</label>
+          <label for="example-text-input" class="col-2 col-form-label">Primer Apellido *</label>
           <div class="col-10">
             <input class="form-control" type="text" value="" id="txt-papellido" name="papellido" example-text-input">
           </div>
@@ -187,15 +188,16 @@
         </div>
 
         <div class="form-group row">
-          <label for="example-search-input" class="col-2 col-form-label">Cuenta</label>
+          <label for="example-search-input" class="col-2 col-form-label">Cuenta *</label>
           <div class="col-10">
-            <input class="form-control" type="" value=" " id="txt-cuenta" name="cuenta">
+            <input class="form-control" type="" value=" " id="txt-cuenta" name="cuenta"    onkeydown="validarCuenta(this)">
           </div>
+           <div id="div-error1" class="mensaje-error" style="margin-left: 20px;">Solo digitos, 11 para cuenta</div>
         </div>
         <div class="form-group row">
-          <label for="example-email-input" class="col-2 col-form-label">Correo Electronico</label>
+          <label for="example-email-input" class="col-2 col-form-label">Correo Electronico *</label>
           <div class="col-10">
-            <input class="form-control" type="email" id="txt-correoelectronico" value="" name="correoElectronico">
+            <input class="form-control" type="email" id="txt-correoelectronico" value="" name="correoElectronico" onkeyup="validarCorreo(this)">
           </div>
         </div>
         <!--<div class="form-group row">
@@ -211,10 +213,12 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="example-password-input" class="col-2 col-form-label">Contraseña</label>
+          <label for="example-password-input" class="col-2 col-form-label">contraseña *</label>
           <div class="col-10">
-            <input class="form-control" type="password" id="txt-password" value="" name="contrasena">
+            <input class="form-control" type="password" id="txt-password" value="" name="contrasena" onkeydown="validarPassw(this)">
+            <div id="div-error2" class="mensaje-error" style="margin-left: 20px;">Contraseña debe ser de entre 8-16 caracteres, minimo una mayuscula, una minuscla y un simbolo</div>
           </div>
+
         </div>
 
         <div class="form-group row">
@@ -249,7 +253,7 @@
 
 
         <div class="form-group row">
-          <label for="example-tel-input" class="col-2 col-form-label">Centro de Estudio</label>
+          <label for="example-tel-input" class="col-2 col-form-label">Centro de Estudio *</label>
           <div class="col-10">
             <select id="slc-centroEstudio" class="form-control">
               <option class="form-control">Seleccione un centro de estudio</option>
@@ -318,7 +322,7 @@
     <input class="form-control" id="txt-fechaingreso" type="date" value="" name="fechaIngreso">
   </div>
 </div>-->
-
+            <div id="div-error" class="mensaje-error">Por favor llene todos los campos requeridos *</div>
             <!-- For success/fail messages -->
             <div class="container-login100-form-btn">
               <button id="btn-registrarse" class="login100-form-btn">

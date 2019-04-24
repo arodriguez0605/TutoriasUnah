@@ -54,44 +54,8 @@ $.ajax({
 });
 
 
-   /* $.ajax({
- url:"ajax/getInfo.php?accion=departamentoclase",
-        data:"",
-        method:"POST",
-        success:function(respuesta){
-
-          $("#slc-departamento").html(respuesta);
-        },
-        error:function(e){
-
-           console.log(e);
-        }
-
- });
 
 
-
-      $.ajax({
- url:"ajax/getInfo.php?accion=detallematricula",
-        data:"",
-        method:"POST",
-        success:function(respuesta){
-
-          $("#forma-03").html(respuesta);
-        },
-        error:function(e){
-
-           console.log(e);
-        }
-
- });
-
-    
-
-});
-
-
-*/
 
 
 
@@ -211,6 +175,22 @@ $("#slc-centroEstudio").click(function(){
 
 $("#btn-iniciar-sesion-estudiante").click(function(){
 
+  /*if ($("#txt-correo").val() == "") {
+      document.getElementById('txt-correo').classList.add('input_error');
+      document.getElementById('txt-password').classList.add('input_error');
+      document.getElementById('div-error2').style.display = 'block';
+    if ($("#txt-password").val() == "") {
+      document.getElementById('txt-correo').classList.add('input_error');
+      document.getElementById('txt-password').classList.add('input_error');
+      document.getElementById('div-error2').style.display = 'block';
+    }
+  }*/  
+   document.getElementById('txt-correo').classList.remove('input_error');
+   document.getElementById('txt-password').classList.remove('input_error');
+  document.getElementById('div-error').style.display = 'none';
+  document.getElementById('div-error2').style.display = 'none';
+
+
 	if ($("#txt-correo").val()) {
 
 		if ($("#txt-password").val()) {
@@ -258,7 +238,10 @@ $("#btn-iniciar-sesion-estudiante").click(function(){
                       }
 						         }
                     else{
-                      alert('Usuario No Encontrado!');
+                      document.getElementById('txt-correo').classList.add('input_error');
+                      document.getElementById('txt-password').classList.add('input_error');
+                      document.getElementById('div-error').style.display = 'block';
+                      /*alert('Usuario No Encontrado!');*/
                     }
         						},
         						
@@ -271,33 +254,68 @@ $("#btn-iniciar-sesion-estudiante").click(function(){
        							});
                     
      							 }
+                   else{
+                    document.getElementById('txt-correo').classList.add('input_error');
+                    document.getElementById('txt-password').classList.add('input_error');
+                    document.getElementById('div-error').style.display = 'block';
+                   }
      			}
 	else{
-		alert("ingrese datos.");
+    document.getElementById('txt-correo').classList.add('input_error');
+    document.getElementById('txt-password').classList.add('input_error');
+		document.getElementById('div-error2').style.display = 'block';
 	}
 
 });
 
 
-/*$("#slc-carreras").click(function(){
+/*******Validadiones******/
 
-        var parametro = "slc-carreras="+$('#slc-carreras').val();
-		$.ajax({
- 		url:"ajax/getInfo.php?accion=facultades",
-        data:parametro,
-        method:"POST",
-        success:function(respuesta){
 
-          $("#facultad").html(respuesta);
-        },
-        error:function(e){
+function validarCorreo(etiquetaCorreo){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(etiquetaCorreo.value))
+        etiquetaCorreo.classList.remove('input_error');
+    else
+        etiquetaCorreo.classList.add('input_error');
 
-           console.log(e);
-        }
+}
 
- });
+function validarPassw(abc){
+    var expresion = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+    if (expresion.test(abc.value)){
+        abc.classList.remove('input_error');
+        document.getElementById('div-error2').style.display = 'none';
+    }else{
+        abc.classList.add('input_error');
+        document.getElementById('div-error2').style.display = 'block';
+    }
+}    
 
- });*/
+function validarCuenta(cuenta){
+  var num = /^[0-9]{11}$/;
+  if(num.test(cuenta.value)){
+    cuenta.classList.remove('input_error');
+    document.getElementById('div-error1').style.display = 'none';
+  }
+  else{
+      cuenta.classList.add('input_error');
+      document.getElementById('div-error1').style.display = 'block';
+  }
+}
+
+function validarCampoVacio(campo){
+    if (document.getElementById(campo).value ==''){   
+        document.getElementById(campo).classList.add('input_error');
+        document.getElementById('div-error').style.display = 'block';
+        return false;
+    }else{
+        document.getElementById(campo).classList.remove('input_error');
+        document.getElementById('div-error').style.display = 'none';
+        return true;
+    }
+}
+
 
 function verClases(a){
   window.location.replace("clases.php?dep="+a);
@@ -306,6 +324,24 @@ function verClases(a){
 
 
 $("#btn-registrarse").click(function(){
+
+  var campos = [
+        {campo:'txt-pnombre',valido:false},
+        {campo:'txt-papellido',valido:false},
+        {campo:'txt-cuenta',valido:false},
+        {campo:'slc-centroEstudio',valido:false},
+        {campo:'txt-correoelectronico',valido:false},
+        {campo:'txt-password',valido:false}
+    ];
+    
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampoVacio(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+}
 
 
 if($("#txt-pnombre").val())
@@ -362,37 +398,42 @@ if($("#txt-pnombre").val())
 
           }
           else{
-
-                alert("Ingrese una contraseña.");
+              document.getElementById('txt-password').classList.add('input_error');
+              document.getElementById('div-error').style.display = 'block';
               }
                     
                   
     }
     else{
 
-          alert("Ingrese un correo");
+         document.getElementById('txt-correo').classList.add('input_error');
+        document.getElementById('div-error').style.display = 'block';
         }
       }
     
 	  else{
-
-              alert("Seleccione un centroEstudio.");
+        document.getElementById('txt-cuenta').classList.add('input_error');
+        document.getElementById('div-error').style.display = 'block';
 	   }
 
 	  }
 
     else{
-          alert("Ingrese Un numero de Cuenta.");
-          
+        document.getElementById('slc-centroEstudio').classList.add('input_error');
+        document.getElementById('div-error').style.display = 'block';
         } 
     
     }
      else{
-     	alert("Ingrese Primer Apellido.");
+     	document.getElementById('txt-papellido').classList.add('input_error');
+      document.getElementById('div-error').style.display = 'block';
      }
  }
-  else{alert("Ingrese Primer Nombre");}
- });
+  else{
+    document.getElementById('txt-pnombre').classList.add('input_error');
+    document.getElementById('div-error').style.display = 'block';
+  }
+});
 
 
 $("#slc-departamento").click(function(){

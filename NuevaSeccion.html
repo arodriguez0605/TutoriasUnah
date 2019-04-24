@@ -19,6 +19,8 @@
   <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
   <link rel="stylesheet" type="text/css" href="css/util.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -89,16 +91,18 @@
           </label>
           <div class="col-9">
             <input class="form-control" type="text" id="txt-nombreSeccion" value="" name="nombreSeccion"
-              example-text-input">
+              example-text-input" onkeyup="validarSeccion(this)">
+               <div id="div-error1" class="mensaje-error">Solo numeros, hasta 4 digitos</div>
           </div>
+
         </div>
         <br>
 
         <div class="form-group row">
-          <label for="example-tel-input" class="col-2 col-form-label">
+          <label for="example-tel-input" class="col-3 col-form-label">
             <p>Materia</p>
           </label>
-          <div class="col-10">
+          <div class="col-9" >
             <select id="slc-materia" class="form-control">
               <option class="form-control">Seleccione materia a impartir</option>
               <option class="form-control" value="" id="materia" name="materia"></option>
@@ -107,8 +111,8 @@
         </div>
 
         <div class="form-group row">
-          <label for="example-tel-input" class="col-2 col-form-label">Edificio</label>
-          <div class="col-10">
+          <label for="example-tel-input" class="col-3 col-form-label">Edificio</label>
+          <div class="col-9">
             <select id="slc-edificio" class="form-control">
               <option class="form-control">Seleccione un Edificio</option>
               <option class="form-control" value="" id="edificio" name="edificio"></option>
@@ -117,8 +121,8 @@
         </div>
 
         <div class="form-group row">
-          <label for="example-tel-input" class="col-2 col-form-label">Aula</label>
-          <div class="col-10">
+          <label for="example-tel-input" class="col-3 col-form-label">Aula</label>
+          <div class="col-9">
             <select id="slc-aula" class="form-control">
               <option class="form-control">Seleccione un Aula</option>
               <option class="form-control" value="" id="aula" name="aula"></option>
@@ -130,10 +134,10 @@
 
           <div class="col-6">
             <div class="form-group row">
-              <label for="example-tel-input" class="col-4 col-form-label">
+              <label for="example-tel-input" class="col-6 col-form-label">
                 <p>Hora Inicial</p>
               </label>
-              <div class="col-8">
+              <div class="col-6">
                 <select id="slc-horaInicial">
                   <option class="form-control">Horal Inicial</option>
                   <option class="form-control" value="070000" name="inicio">7:00AM</option>
@@ -153,10 +157,10 @@
 
           <div class="col-6">
             <div class="form-group row">
-              <label for="example-tel-input" class="col-4 col-form-label">
-                <p>Hora Final</p>
+              <label for="example-tel-input" class="col-6 col-form-label">
+                <p style="margin-left: 50px">Hora Final</p>
               </label>
-              <div class="col-8">
+              <div class="col-6">
                 <select id="slc-horaFinal">
                   <option class="form-control">Horal Final</option>
                   <option class="form-control" value="080000" name="final">8:00AM</option>
@@ -184,9 +188,10 @@
             <p>Numero máximo de Cupos</p>
           </label>
           <div class="col-9">
-            <input class="form-control" type="text" id="txt-numeroCupos" value="" name="numeroCupos"
-              example-text-input">
+            <input class="form-control" type="text" id="txt-numeroCupos" name="numeroCupos"
+             onkeyup="validarCupos(this)">
           </div>
+           <div id="div-error3" class="mensaje-error">Solo numeros, 2 digitos maximo</div>
         </div>
 
         <div class="row">
@@ -202,6 +207,8 @@
 
         </div>
 
+         <div id="div-error" class="mensaje-error" style="margin-top: 50px; font-size: 13px; margin-left: auto; margin-right: auto;">Por favor llene todos los campos</div>
+         <div id="div-error2" class="mensaje-error" style="margin-top: 50px; font-size: 13px; margin-left: auto; margin-right: auto;">Error hora inicial mayor que hora final</div>
         <!-- For success/fail messages -->
         <div class="container-login100-form-btn">
           <button id="btn-crearSeccion" class="login100-form-btn">
@@ -225,6 +232,7 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="js/NuevaSeccion.js"></script>
 </body>
