@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class Seccion{
 
 		private $codigoSeccion;
@@ -165,10 +165,10 @@
 
 				echo '<div class="card">'
 				.'<div class="card-body">'
-					.'<h5 class="card-title">'.$fila['NombreSeccion'].'</h5>'
+					.'<h5 class="card-title">'.Util::convertirString($fila['NombreSeccion']).'</h5>'
 					.'<div class="row">'
 						.'<div class = "col-10">'
-							.'<p class="card-text"> Materia: '.$fila['NombreClase'].'</p>'
+							.'<p class="card-text"> Materia: '.Util::convertirString($fila['NombreClase']).'</p>'
 								.'<div class="row">'
 									.'<div class="col-6">'
 										.'<p class="card-text"> Hora Inicial: '.$fila['Hora_Inicio'].'</p>'
@@ -216,7 +216,7 @@
 
 		static public function crearSeccionT($conexion,$Hora_Inicio,$Hora_Fin,$Dias,$idClase,$NombreSeccion,$Cupos,$idAula,$idTutor){
 				$sql = 'INSERT INTO seccion (Hora_Inicio,Hora_Fin,Dias,idClase,NombreSeccion,Cupos,idAula,idTutor) 
-									Values ('.$Hora_Inicio.','.$Hora_Fin.',"'.$Dias.'",'.$idClase.','.$NombreSeccion.','.$Cupos.','.$idAula.','.$idTutor.')';
+									Values ('.$Hora_Inicio.','.$Hora_Fin.',"'.$Dias.'",'.$idClase.',"'.$NombreSeccion.'",'.$Cupos.','.$idAula.','.$idTutor.')';
 				echo $sql;
 				echo'----------------';
 				$resultado = $conexion->ejecutarConsulta($sql);
@@ -247,10 +247,10 @@
 				{
 						echo '<div class="card" id="\'div'.$fila['id_Seccion'].'\'">'
 						.'<div class="card-body">'
-							.'<h5 class="card-title">'.$fila['NombreSeccion'].'</h5>'
+							.'<h5 class="card-title">'.Util::convertirString($fila['NombreSeccion']).'</h5>'
 							.'<div class="row">'
 								.'<div class = "col-10">'
-									.'<p class="card-text"> Materia: '.$fila['NombreClase'].'</p>'
+									.'<p class="card-text"> Materia: '.Util::convertirString($fila['NombreClase']).'</p>'
 										.'<div class="row">'
 											.'<div class="col-6">'
 												.'<p class="card-text"> Hora Inicial: '.$fila['Hora_Inicio'].'</p>'
@@ -303,7 +303,7 @@
 			$fila2 = $conexion->obtenerFila($resultado2);
 			$cuposDisponibles = $fila["Cupos"] - $fila2["Matriculas"];
 			echo 
-				'<option value="'.$fila['id_Seccion'].'">Cupos:'.$cuposDisponibles.' HoraInicio: '.$fila['Hora_Inicio'].' HoraFinal: '.$fila['Hora_Fin'].' Dias: '.$fila['Dias'].' Tutor:'.$fila['Nombre1'].' '.$fila['Apellido1'].'</option>';
+				'<option value="'.$fila['id_Seccion'].'">Cupos:'.$cuposDisponibles.' HoraInicio: '.$fila['Hora_Inicio'].' HoraFinal: '.$fila['Hora_Fin'].' Dias: '.$fila['Dias'].' Tutor:'.Util::convertirString($fila['Nombre1']).' '.Util::convertirString($fila['Apellido1']).'</option>';
 				
 		}
 
@@ -352,8 +352,8 @@
 				{
 					echo  '<tr>
 							<th scope="row">'.$i.'</th>
-							<td>'.$fila['Nombre1'].'</td>
-							<td>'.$fila['Apellido1'].'</td>
+							<td>'.Util::convertirString($fila['Nombre1']).'</td>
+							<td>'.Util::convertirString($fila['Apellido1']).'</td>
 							<td>'.$fila['NumeroCuenta'].'</td>
 							<td>'.$fila['email'].'</td>
 							</tr>';
@@ -363,4 +363,3 @@
 
 		}
 	}
-?>

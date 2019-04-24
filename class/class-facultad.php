@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class Facultad{
 
 		private $codigoFacultad;
@@ -38,10 +38,9 @@
 		
 			while (($fila= $conexion->obtenerFila($resultado))) {
 				
-				echo $fila['NOMBREFACULTAD'];
+				echo Util::convertirString($fila['NOMBREFACULTAD']);
 			}
 				
 		}
 
 	}
-?>

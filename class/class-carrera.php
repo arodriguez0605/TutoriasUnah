@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class Carrera{
 
 		private $codigoCarrera;
@@ -66,7 +66,7 @@
 		  WHERE ce.idCentrodeEstudio =".$centroEstudio);
             while (($fila= $conexion->obtenerFila($resultado))) {
 				
-				echo '<option value='.$fila['idCarrera'].'>'.$fila['NombreCarrera'].' </option>';
+				echo '<option value='.$fila['idCarrera'].'>'.Util::convertirString($fila['NombreCarrera']).' </option>';
 			}
 
 		}

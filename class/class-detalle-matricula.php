@@ -1,4 +1,5 @@
 <?php
+    include_once 'class-util.php';
 	class DetalleMatricula{
 
 		private $codigoMatricula;
@@ -89,8 +90,8 @@
 				echo '  <tr>
       					<th scope="row">'.$contador.'</th>
       					<td>'.$fila["CODIGOASIGNATURA"].'</td>
-      					<td>'.$fila["NOMBREASIGNATURA"].'</td>
-      					<td>'.$fila["NOMBRESECCION"].'</td>
+      					<td>'.Util::convertirString($fila["NOMBREASIGNATURA"]).'</td>
+      					<td>'.Util::convertirString($fila["NOMBRESECCION"]).'</td>
       					<td>'.$fila["HORAINICIO"].'</td>
       					<td>'.$fila["HORAFIN"].'</td>
       					<td>'.$fila["AULA"].'</td>

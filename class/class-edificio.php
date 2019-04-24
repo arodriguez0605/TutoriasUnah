@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class Edificio{
 
 		private $idEdificio;
@@ -52,7 +52,7 @@
 			$resultado = $conexion->ejecutarConsulta('SELECT * FROM edificio');
 			  while (($fila= $conexion->obtenerFila($resultado))) {
 				  echo 
-				  '<option value="'.$fila['idEdificio'].'">'.$fila['Nombre_edificio'].' </option>';
+				  '<option value="'.$fila['idEdificio'].'">'.Util::convertirString($fila['Nombre_edificio']).' </option>';
 			  }
   
 		  }
