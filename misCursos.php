@@ -56,23 +56,11 @@ session_start();
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="index.php">Logout</a>
-
-              <!--        <a class="dropdown-item" href="portfolio-3-col.html"></a>
-                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a> -->
             </div>
           <li class="nav-item dropdown">
-            <!-- 
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Descargar
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="manualUsuario.pdf">Manual de usuario</a>
-              </div> -->
+          </li>
+        </ul>
       </div>
-      </li>
-      </ul>
-    </div>
     </div>
   </nav>
 
@@ -90,6 +78,7 @@ session_start();
         </div>
         <div class="modal-body">
           <div class="form-group">
+
             <!-- ..............Noticia y comentarios..................-->
             <div id="div-noticias-E">
               <div class="media">
@@ -124,13 +113,8 @@ session_start();
     </div>
   </div>
 
-
-
-
-
   <br>
   <br>
-  <!-- Page Content -->
   <div class="container">
 
     <div>
@@ -140,26 +124,17 @@ session_start();
     <div id="seccionesContainer-estudiante">
 
     </div>
-
-
-
-
-
-
+    <!-- javascripts importados -->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
     <script src="vendor/bootstrap/js/popper.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
     <script src="vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
     <script src="vendor/tilt/tilt.jquery.min.js"></script>
     <script>
       $('.js-tilt').tilt({
         scale: 1.1
       })
     </script>
-    <!--===============================================================================================-->
     <script src="js/main.js"></script>
     <script src="js/misCursos.js"></script>
 
