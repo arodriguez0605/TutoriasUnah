@@ -1,6 +1,6 @@
 
 <?php
-
+include_once 'class-util.php';
 class Usuario{
 
 	private $idUsuario;
@@ -126,12 +126,12 @@ class Usuario{
 			$consultaDatos = "SELECT * FROM alumno a INNER JOIN carrera c ON a.idCarrera = c.idCarrera WHERE a.idUsuario=".$fila['idUsuario'];
 			$res2 = $conexion->ejecutarConsulta($consultaDatos);
 			$datos = $conexion->obtenerFila($res2);
-			$_SESSION['nombreCompleto'] = $datos['Nombre1'].' '.$datos['Nombre2'].' '.$datos['Apellido1'].' '
-			.$datos['Apellido2'];
+			$nombreCompleto = $datos['Nombre1'].' '.$datos['Nombre2'].' '.$datos['Apellido1'].' '.$datos['Apellido2'];
+            $_SESSION['nombreCompleto'] = Util::convertirString($nombreCompleto);
 			$_SESSION['numeroCuenta'] = $datos['NumeroCuenta'];
-			$_SESSION['carrera'] = $datos['NombreCarrera'];	
+			$_SESSION['carrera'] = Util::convertirString($datos['NombreCarrera']);
 			$_SESSION['telefono'] = $datos['Telefono'];
-			$_SESSION['nombreYApellido'] =  $datos['Nombre1'].$datos['Apellido1'];
+			$_SESSION['nombreYApellido'] =  Util::convertirString($datos['Nombre1']).Util::convertirString($datos['Apellido1']);
 			$_SESSION['idAlumno'] = $datos['idAlumno'];
 
 		$respuesta["idTipoUsuario"]=$fila["idTipoUsuario"];
@@ -233,8 +233,8 @@ static public function obtenerTutores($conexion){
 	{
 		echo  '<tr>
 				<th scope="row">'.$i.'</th>
-				<td>'.$fila['Nombre1'].'</td>
-				<td>'.$fila['Apellido1'].'</td>
+				<td>'.Util::convertirString($fila['Nombre1']).'</td>
+				<td>'.Util::convertirString($fila['Apellido1']).'</td>
 				<td>'.$fila['NumeroCuenta'].'</td>
 				<td>'.$fila['email'].'</td>
 				<td>'.$fila['estado'].'</td>
@@ -284,4 +284,3 @@ static public function activarTutor($conexion,$idAlumno){
 }
 
 }
-?>

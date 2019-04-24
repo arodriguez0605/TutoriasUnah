@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class Ciudad{
 
 		private $codigoCiudad;
@@ -49,7 +49,7 @@
 		
 			while (($fila= $conexion->obtenerFila($resultado))) {
 				
-				echo $fila['NombreCiudad'];
+				echo Util::convertirString($fila['NombreCiudad']);
 			}
 				
 		}

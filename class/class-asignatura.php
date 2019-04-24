@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class Asignatura{
 
 		private $codigoAsignatura;
@@ -49,7 +49,7 @@
 				'<div class="col-sm-6 mt-4">
 					<div class="card">
 				  		<div class="card-body">
-						<h5 class="card-title">'.$fila['CodigoClase'].' '.$fila['NombreClase'].'</h5>
+						<h5 class="card-title">'.$fila['CodigoClase'].' '.Util::convertirString($fila['NombreClase']).'</h5>
 						<p class="card-text">Consulte la disponibilidad de las tutorias.</p>
 						<input type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class="btn btn-primary" onclick="obtenerSecciones('.$fila['id_Clase'].')" value="Ver Disponibilidad">
 						  <input type="button" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" class="btn btn-warning" value="Solicitar Seccion" onclick="crearBoton('.$fila['id_Clase'].')">
@@ -67,7 +67,7 @@
 			$resultado = $conexion->ejecutarConsulta('SELECT * FROM clase');
 			  while (($fila= $conexion->obtenerFila($resultado))) {
 				  echo 
-				  '<option value="'.$fila['id_Clase'].'">'.$fila['NombreClase'].' </option>';
+				  '<option value="'.$fila['id_Clase'].'">'.Util::convertirString($fila['NombreClase']).' </option>';
 			  }
   
 		  }
@@ -95,7 +95,7 @@
 						<td>'.$fila['Hora_Inicio'].'</td>
 						<td>'.$fila['Hora_Fin'].'</td>
 						<td>'.$fila['Dias'].'</td>
-						<td>'.$fila['NombreClase'].'</td>
+						<td>'.Util::convertirString($fila['NombreClase']).'</td>
 						<td><input type="button" class="btn btn-danger" value="X" onclick="eliminarSolicitud('.$fila['idSolicitud'].')"> </td>
 						<td><a class="btn btn-success" href="NuevaSeccion.html" >Crear </a></td>
 						</tr>';

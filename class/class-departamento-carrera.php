@@ -1,5 +1,5 @@
 <?php
-
+    include_once 'class-util.php';
 	class DepartamentoCarrera{
 
 		private $codigoDepartamento;
@@ -48,8 +48,8 @@
 				<div class="card" style="width: 18rem;">
 				<img src="'.$fila['imagen'].'" class="card-img-top" width="200" height="200" alt="...">
 				<div class="card-body">
-				  <h5 class="card-title">'.$fila['NombreDepartamento'].'</h5>
-				  <p class="card-text">Aqui se encuentran todas las clases que pertenecen al departamento de '.$fila['NombreDepartamento'].'</p>
+				  <h5 class="card-title">'.Util::convertirString($fila['NombreDepartamento']).'</h5>
+				  <p class="card-text">Aqui se encuentran todas las clases que pertenecen al departamento de '.Util::convertirString($fila['NombreDepartamento']).'</p>
 				  <input  type="button" onclick="verClases('.$fila['idDepartamentoxCarrera'].')" class="btn btn-primary" value="Ver clases">
 				</div>
 			  </div>
@@ -60,4 +60,3 @@
 
 
 	}
-?>

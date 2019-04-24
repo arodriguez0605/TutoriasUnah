@@ -1,5 +1,5 @@
 <?php
-
+	include_once 'class-util.php';
 	class Noticia{
 
 		private $idNoticia;
@@ -82,7 +82,7 @@
 			}
 				echo'<img src="img/perfil-vacio.jpg" class="mr-3" alt="Smiley face" width="40" height="40">
 				<div class="media-body">
-				  <h5 class="mt-0 asunto">'.$fila['asunto'].'</h5>
+				  <h5 class="mt-0 asunto">'.Util::convertirString($fila['asunto']).'</h5>
 					<label clas="descripcion">
 					'.$fila['descripcion'].'
 					</label>
@@ -94,8 +94,8 @@
 							  <img src="img/perfil-vacio.jpg" class="mr-3" alt="Smiley face"width="25" height="25">
 							</a>
 							<div class="media-body">
-								<h5 class="mt-0">'.$fila2['Nombre1'].' '.$fila2['Apellido1'].'</h5>
-								 '.$fila2['comentario'].'
+								<h5 class="mt-0">'.Util::convertirString($fila2['Nombre1']).' '.Util::convertirString($fila2['Apellido1']).'</h5>
+								 '.Util::convertirString($fila2['comentario']).'
 							</div>';
 							if($_SESSION['idTipoUsuario']==2){
 								echo'<input type="button" class="btn btn-danger" style="color: white;" value="X" onClick="eliminarComentario('.$fila2['idComentario'].')">';
@@ -139,5 +139,4 @@
 			echo $conexion->getError();
 		}
 }
-?>
 
