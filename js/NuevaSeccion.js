@@ -49,8 +49,68 @@ $("#slc-edificio").click(function(){
 });
 
 
-$("#btn-crearSeccion").click(function(){
+/*****Validacion******/
+function validarCampoVacio(campo){
+    if (document.getElementById(campo).value ==''){   
+        document.getElementById(campo).classList.add('input_error');
+        document.getElementById('div-error').style.display = 'block';
+        return false;
+    }else{
+        document.getElementById(campo).classList.remove('input_error');
+        document.getElementById('div-error').style.display = 'none';
+        return true;
+    }
+}
 
+function validarCupos(cupos){
+  var num = /^[0-9]{2}$/;
+  if(num.test(cupos.value)){
+    cupos.classList.remove('input_error');
+    document.getElementById('div-error3').style.display = 'none';
+  }else{
+     cupos.classList.add('input_error');
+     document.getElementById('div-error3').style.display = 'block';
+  }
+}
+
+function validarSeccion(asd){
+  var exp = /^[0-9]{4}$/;
+  if(exp.test(asd.value)){
+    asd.classList.remove('input_error');
+     document.getElementById('div-error1').style.display = 'none';
+  }else{
+     asd.classList.add('input_error');
+      document.getElementById('div-error1').style.display = 'block';
+  }
+}
+/**************************/
+
+$("#btn-crearSeccion").click(function(){
+	var campos = [
+        {campo:'slc-materia',valido:false},
+        {campo:'slc-edificio',valido:false},
+        {campo:'slc-aula',valido:false},
+        {campo:'slc-horaInicial',valido:false},
+        {campo:'slc-horaFinal',valido:false},
+        {campo:'txt-nombreSeccion',valido:false},
+        {campo:'txt-numeroCupos',valido:false} 
+    ];
+    
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampoVacio(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+	}
+
+
+
+	/*if((document.getElementById('slc-horafinal').value) <= (document.getElementById('slc-horaInicial').value)){
+		document.getElementById('div-error2').style.display = 'block';
+		
+	}*/
 
 	if($("#txt-nombreSeccion").val())
 		{    
@@ -101,39 +161,39 @@ $("#btn-crearSeccion").click(function(){
 
 									}
 									else{
-									     alert('seleccione almenos un dia.')
+									     document.getElementById('div-error').style.display = 'block';
 									}
 								}
 								else{
-									alert('ingrese los cupos');
+									document.getElementById('div-error').style.display = 'block';
 								}
 						
 							}
 							else{
-								alert('seleccione una hora final');
+								document.getElementById('div-error').style.display = 'block';
 							}
 						
 						}
 						else{
-							alert('seleccione una hr de inicio');
+							document.getElementById('div-error').style.display = 'block';
 						}
 						
 					}
 					else{
-						alert('seleccione un aula');
+						document.getElementById('div-error').style.display = 'block';
 					}
 
 				}
 				else{
-					alert('seleccione un edificio');
+					document.getElementById('div-error').style.display = 'block';
 				}
 
 			}
 			else{
-				alert("Seleccione una materia");
+				document.getElementById('div-error').style.display = 'block';
 			}
 		}
 		else{
-			alert("Ingrese un nombre de seccion");
+			document.getElementById('div-error').style.display = 'block';
 		}
 	 });
