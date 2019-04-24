@@ -73,48 +73,7 @@ session_start();
               <a class="dropdown-item" href="index.php">Logout</a>
               <div>
           </li>
-          <!--<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Ingresar
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="index.php">Login</a>
-              -->
-          <!--        <a class="dropdown-item" href="portfolio-3-col.html"></a>
-                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a> -->
       </div>
-
-
-      <!--  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Descargar
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="manualUsuario.pdf">Manual de usuario</a>
-              </div> -->
-
-
-      <!-- </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Blog
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Other Pages
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                <a class="dropdown-item" href="faq.html">FAQ</a>
-                <a class="dropdown-item" href="404.html">404</a>
-                <a class="dropdown-item" href="pricing.html">Pricing Table</a> -->
     </div>
     </li>
     </ul>
@@ -139,27 +98,16 @@ session_start();
     </div>
   </div>
 
-
-
-
-
-
-
-  <!--===============================================================================================-->
   <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-  <!--===============================================================================================-->
   <script src="vendor/bootstrap/js/popper.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-  <!--===============================================================================================-->
   <script src="vendor/select2/select2.min.js"></script>
-  <!--===============================================================================================-->
   <script src="vendor/tilt/tilt.jquery.min.js"></script>
   <script>
     $('.js-tilt').tilt({
       scale: 1.1
     })
   </script>
-  <!--===============================================================================================-->
   <script src="js/main.js"></script>
   <script src="js/jmfunciones.js"></script>
 
