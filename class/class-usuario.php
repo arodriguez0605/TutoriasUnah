@@ -1,59 +1,48 @@
 <?php
-class Usuario
-{
+	class Usuario{
 
-	private $codigoUsuario;
-	private $contrasena;
-	private $codigoRol;
+		private $codigoUsuario;
+		private $contrasena;
+		private $codigoRol;
 
-	public function __construct(
-		$codigoUsuario,
-		$contrasena,
-		$codigoRol
-	) {
-		$this->codigoUsuario = $codigoUsuario;
-		$this->contrasena = $contrasena;
-		$this->codigoRol = $codigoRol;
-	}
-	public function getCodigoUsuario()
-	{
-		return $this->codigoUsuario;
-	}
-	public function setCodigoUsuario($codigoUsuario)
-	{
-		$this->codigoUsuario = $codigoUsuario;
-	}
-	public function getContrasena()
-	{
-		return $this->contrasena;
-	}
-	public function setContrasena($contrasena)
-	{
-		$this->contrasena = $contrasena;
-	}
-	public function getCodigoRol()
-	{
-		return $this->codigoRol;
-	}
-	public function setCodigoRol($codigoRol)
-	{
-		$this->codigoRol = $codigoRol;
-	}
-	public function __toString()
-	{
-		return "CodigoUsuario: " . $this->codigoUsuario .
-			" Contrasena: " . $this->contrasena .
-			" CodigoRol: " . $this->codigoRol;
-	}
+		public function __construct($codigoUsuario,
+					$contrasena,
+					$codigoRol){
+			$this->codigoUsuario = $codigoUsuario;
+			$this->contrasena = $contrasena;
+			$this->codigoRol = $codigoRol;
+		}
+		public function getCodigoUsuario(){
+			return $this->codigoUsuario;
+		}
+		public function setCodigoUsuario($codigoUsuario){
+			$this->codigoUsuario = $codigoUsuario;
+		}
+		public function getContrasena(){
+			return $this->contrasena;
+		}
+		public function setContrasena($contrasena){
+			$this->contrasena = $contrasena;
+		}
+		public function getCodigoRol(){
+			return $this->codigoRol;
+		}
+		public function setCodigoRol($codigoRol){
+			$this->codigoRol = $codigoRol;
+		}
+		public function __toString(){
+			return "CodigoUsuario: " . $this->codigoUsuario . 
+				" Contrasena: " . $this->contrasena . 
+				" CodigoRol: " . $this->codigoRol;
+		}
 
 
 
 
 
-	public static function verificarUsuario($conexion, $cuenta, $contra)
-	{
-		$sql = sprintf(
-			"SELECT * from usuario u
+		public static function verificarUsuario($conexion,$cuenta,$contra){
+		    $sql = sprintf(
+		   "SELECT * from usuario u
   		 	inner join Estudiante e on u.CODIGOUSUARIO = e.CODIGOUSUARIO
             inner join Persona p on e.codigoPersona = p.codigoPersona
             inner join CentroEstudio ce on ce.codigoCentroEstudio = e.codigoCentroEstudio
@@ -61,41 +50,44 @@ class Usuario
             inner join PlanEStudios pe on exp.CODIGOPLANESTUDIO=pe.CODIGOPLANESTUDIO
             inner join CARRERA ca on pe.CODIGOCARRERA = ca.CODIGOCARRERA
             inner join Historial h on e.codigoEstudiante = h.codigoEstudiante
-            where e.NUMEROCUENTA=" . $cuenta . " and u.CONTRASENA='" . $contra . "'"
+            where e.NUMEROCUENTA=".$cuenta." and u.CONTRASENA='".$contra."'"
+  					
+  					
+		    	);
+		    //echo ($sql);
+
+		    $resultado = $conexion->ejecutarConsulta($sql);
+
+		   // $cantidadRegistros = $conexion->cantidadRegistros($resultado); 
+		   	$numrows = oci_fetch_all($resultado, $res);
 
 
-		);
-		//echo ($sql);
 
-		$resultado = $conexion->ejecutarConsulta($sql);
+		    $respuesta=array();
+		   
+		    if ($numrows==1){
+		    	$resultado = $conexion->ejecutarConsulta($sql);
+		    	$fila = $conexion->obtenerFila($resultado);
+		    	$respuesta["estatus"]=1;
+		    	$_SESSION["NUMEROCUENTA"] = $fila["NUMEROCUENTA"];
+		    	$_SESSION["PNOMBRE"] = $fila["PNOMBRE"];
+                 $_SESSION["PAPELLIDO"] = $fila["PAPELLIDO"];
+                 $_SESSION["NOMBRECENTRO"] = $fila["NOMBRECENTRO"];
+                 $_SESSION["NOMBRECARRERA"] = $fila["NOMBRECARRERA"];
+		    	$_SESSION["CODIGOROL"]=$fila["CODIGOROL"];
+		    	$_SESSION["CODIGOHISTORIAL"]=$fila["CODIGOHISTORIAL"];
+		    	$_SESSION["CODESTUDIANTE"] = $fila["CODIGOESTUDIANTE"];
+		    	
+		    }
+		    else{
+		    	$respuesta["estatus"]=0;
+			 }
+    
+		    echo json_encode($respuesta);
 
-		// $cantidadRegistros = $conexion->cantidadRegistros($resultado); 
-		$numrows = oci_fetch_all($resultado, $res);
-
-
-
-		$respuesta = array();
-
-		if ($numrows == 1) {
-			$resultado = $conexion->ejecutarConsulta($sql);
-			$fila = $conexion->obtenerFila($resultado);
-			$respuesta["estatus"] = 1;
-			$_SESSION["NUMEROCUENTA"] = $fila["NUMEROCUENTA"];
-			$_SESSION["PNOMBRE"] = $fila["PNOMBRE"];
-			$_SESSION["PAPELLIDO"] = $fila["PAPELLIDO"];
-			$_SESSION["NOMBRECENTRO"] = $fila["NOMBRECENTRO"];
-			$_SESSION["NOMBRECARRERA"] = $fila["NOMBRECARRERA"];
-			$_SESSION["CODIGOROL"] = $fila["CODIGOROL"];
-			$_SESSION["CODIGOHISTORIAL"] = $fila["CODIGOHISTORIAL"];
-			$_SESSION["CODESTUDIANTE"] = $fila["CODIGOESTUDIANTE"];
-		} else {
-			$respuesta["estatus"] = 0;
 		}
 
-		echo json_encode($respuesta);
-	}
-
-	/*
+    /*
 		public function registrarUsuario($conexion){
 			$sql = sprintf("INSERT INTO usuarios(nombre_usuario, nombre_persona, contrasenna, email, telefono, fecha_nacimiento, url_foto_perfl, ultima_conexion, seguidores, siguiendo, ID_genero, ID_tipo_usuario) VALUES('%s','%s','%s','%s',%s,'%s','%s','%s',%s,%s,%s,%s)",
 				$conexion->antiInyeccion($this->nombre_usuario),
@@ -121,7 +113,7 @@ class Usuario
 
 */
 
-	/*
+/*
 		public static function consultar($conexion,$cuenta,$contra){
 			$sql= sprintf("SELECT e.numeroCuenta,p.pNombre,p.pApellido,ce.nombreCentro,ca.nombreCarrera,u.CodigoRol from usuario u
   					inner join Estudiante e on u.CODIGOUSUARIO = e.CODIGOUSUARIO
@@ -144,4 +136,6 @@ class Usuario
 			}
 		}
 */
-}
+
+	}
+?>
