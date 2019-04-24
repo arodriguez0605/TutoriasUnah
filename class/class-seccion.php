@@ -216,7 +216,7 @@
 
 		static public function crearSeccionT($conexion,$Hora_Inicio,$Hora_Fin,$Dias,$idClase,$NombreSeccion,$Cupos,$idAula,$idTutor){
 				$sql = 'INSERT INTO seccion (Hora_Inicio,Hora_Fin,Dias,idClase,NombreSeccion,Cupos,idAula,idTutor) 
-									Values ('.$Hora_Inicio.','.$Hora_Fin.',"'.$Dias.'",'.$idClase.','.$NombreSeccion.','.$Cupos.','.$idAula.','.$idTutor.')';
+									Values ('.$Hora_Inicio.','.$Hora_Fin.',"'.$Dias.'",'.$idClase.',"'.$NombreSeccion.'",'.$Cupos.','.$idAula.','.$idTutor.')';
 				echo $sql;
 				echo'----------------';
 				$resultado = $conexion->ejecutarConsulta($sql);
